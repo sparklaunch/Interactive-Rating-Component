@@ -1,0 +1,64 @@
+.main {
+	background-color: var(--color-card);
+	border-radius: 20px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 320px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.starWrapper {
+	padding: 20px;
+	background-color: var(--color-button);
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.header {
+	color: white;
+	font-size: 30px;
+	font-weight: 500;
+}
+
+.text {
+	color: var(--color-text);
+	line-height: 1.5;
+	font-size: 15px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.button {
+	background-color: var(--color-button);
+	border: none;
+	color: var(--color-text);
+	font-weight: 700;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	cursor: pointer;
+}
+
+.submitButton {
+	background-color: var(--color-accent);
+	border: none;
+	padding: 10px 0;
+	border-radius: 20px;
+	color: var(--color-card);
+	font-weight: 900;
+	letter-spacing: 2px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	cursor: pointer;
+}
