@@ -6,10 +6,12 @@ import thankYou from "../assets/images/thank-you.svg";
 import styles from "./ThankYou.module.css";
 
 export default function ThankYou() {
+	const searchParams = useSearchParams();
+	const rating = searchParams.get("rating");
 	return (
 		<main className={styles.main}>
 			<Image src={thankYou} alt="Thank-you" />
-			<RatingText />
+			<p className={styles.ratingText}>You selected {rating} out of 5</p>
 			<section className={styles.thankYouSection}>
 				<h1 className={styles.thankYouHeader}>Thank you!</h1>
 				<p className={styles.thankYouText}>
@@ -19,10 +21,4 @@ export default function ThankYou() {
 			</section>
 		</main>
 	);
-}
-
-function RatingText() {
-	const searchParams = useSearchParams();
-	const rating = searchParams.get("rating");
-	return <p className={styles.ratingText}>You selected {rating} out of 5</p>;
 }
