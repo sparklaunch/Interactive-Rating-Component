@@ -1,8 +1,17 @@
+"use client";
+
+import { clsx } from "clsx";
 import Image from "next/image";
+import { useState } from "react";
 import styles from "./Home.module.css";
 import star from "./assets/images/star.svg";
 
 export default function Home() {
+	const [rating, setRating] = useState("0");
+	const clickHandler = (event) => {
+		const number = event.target.textContent;
+		setRating(number);
+	};
 	return (
 		<main className={styles.main}>
 			<div className={styles.starWrapper}>
@@ -14,11 +23,46 @@ export default function Home() {
 				feedback is appreciated to help us improve our offering!
 			</p>
 			<div className={styles.buttons}>
-				<button className={styles.button}>1</button>
-				<button className={styles.button}>2</button>
-				<button className={styles.button}>3</button>
-				<button className={styles.button}>4</button>
-				<button className={styles.button}>5</button>
+				<button
+					className={clsx(styles.button, {
+						[styles.active]: rating === "1"
+					})}
+					onClick={clickHandler}
+				>
+					1
+				</button>
+				<button
+					className={clsx(styles.button, {
+						[styles.active]: rating === "2"
+					})}
+					onClick={clickHandler}
+				>
+					2
+				</button>
+				<button
+					className={clsx(styles.button, {
+						[styles.active]: rating === "3"
+					})}
+					onClick={clickHandler}
+				>
+					3
+				</button>
+				<button
+					className={clsx(styles.button, {
+						[styles.active]: rating === "4"
+					})}
+					onClick={clickHandler}
+				>
+					4
+				</button>
+				<button
+					className={clsx(styles.button, {
+						[styles.active]: rating === "5"
+					})}
+					onClick={clickHandler}
+				>
+					5
+				</button>
 			</div>
 			<button className={styles.submitButton}>SUBMIT</button>
 		</main>
