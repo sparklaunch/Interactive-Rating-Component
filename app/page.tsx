@@ -2,16 +2,28 @@
 
 import { clsx } from "clsx";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./Home.module.css";
 import star from "./assets/images/star.svg";
 
 export default function Home() {
+	const router = useRouter();
 	const [rating, setRating] = useState("0");
+	const [hasSubmitted, setHasSubmitted] = useState(false);
 	const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const number = event.currentTarget.textContent;
 		setRating(number);
 	};
+	const submitHandler = () => {
+		if (rating === "0") {
+			return;
+		}
+		setHasSubmitted(true);
+	};
+	if (hasSubmitted) {
+		router.push(`/thank-you?rating=${rating}`);
+	}
 	return (
 		<main className={styles.main}>
 			<div className={styles.starWrapper}>
@@ -64,7 +76,9 @@ export default function Home() {
 					5
 				</button>
 			</div>
-			<button className={styles.submitButton}>SUBMIT</button>
+			<button className={styles.submitButton} onClick={submitHandler}>
+				SUBMIT
+			</button>
 		</main>
 	);
 }
