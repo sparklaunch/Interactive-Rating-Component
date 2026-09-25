@@ -10,20 +10,18 @@ import star from "./assets/images/star.svg";
 export default function Home() {
 	const router = useRouter();
 	const [rating, setRating] = useState("0");
-	const [hasSubmitted, setHasSubmitted] = useState(false);
 	const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const number = event.currentTarget.textContent;
-		setRating(number);
+		if (number) {
+			setRating(number);
+		}
 	};
 	const submitHandler = () => {
 		if (rating === "0") {
 			return;
 		}
-		setHasSubmitted(true);
-	};
-	if (hasSubmitted) {
 		router.push(`/thank-you?rating=${rating}`);
-	}
+	};
 	return (
 		<main className={styles.main}>
 			<div className={styles.starWrapper}>
