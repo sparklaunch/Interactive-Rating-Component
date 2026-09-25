@@ -8,8 +8,8 @@ import star from "./assets/images/star.svg";
 
 export default function Home() {
 	const [rating, setRating] = useState("0");
-	const clickHandler = (event) => {
-		const number = event.target.textContent;
+	const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+		const number = event.currentTarget.textContent;
 		setRating(number);
 	};
 	return (
