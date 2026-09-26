@@ -7,17 +7,26 @@ import { useState } from "react";
 import styles from "./Home.module.css";
 import star from "./assets/images/star.svg";
 
+const MAX_RATING = 5;
+
+const ratings = Array.from(
+	{
+		length: MAX_RATING
+	},
+	(_, index) => index + 1
+);
+
 export default function Home() {
 	const router = useRouter();
-	const [rating, setRating] = useState("0");
+	const [rating, setRating] = useState(0);
 	const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const number = event.currentTarget.textContent;
+		const number = +event.currentTarget.textContent;
 		if (number) {
 			setRating(number);
 		}
 	};
 	const submitHandler = () => {
-		if (rating === "0") {
+		if (rating === 0) {
 			return;
 		}
 		router.push(`/thank-you?rating=${rating}`);
@@ -33,46 +42,17 @@ export default function Home() {
 				feedback is appreciated to help us improve our offering!
 			</p>
 			<div className={styles.buttons}>
-				<button
-					className={clsx(styles.button, {
-						[styles.active]: rating === "1"
-					})}
-					onClick={clickHandler}
-				>
-					1
-				</button>
-				<button
-					className={clsx(styles.button, {
-						[styles.active]: rating === "2"
-					})}
-					onClick={clickHandler}
-				>
-					2
-				</button>
-				<button
-					className={clsx(styles.button, {
-						[styles.active]: rating === "3"
-					})}
-					onClick={clickHandler}
-				>
-					3
-				</button>
-				<button
-					className={clsx(styles.button, {
-						[styles.active]: rating === "4"
-					})}
-					onClick={clickHandler}
-				>
-					4
-				</button>
-				<button
-					className={clsx(styles.button, {
-						[styles.active]: rating === "5"
-					})}
-					onClick={clickHandler}
-				>
-					5
-				</button>
+				{ratings.map((number) => (
+					<button
+						key={number}
+						className={clsx(styles.button, {
+							[styles.active]: rating === number
+						})}
+						onClick={clickHandler}
+					>
+						{number}
+					</button>
+				))}
 			</div>
 			<button className={styles.submitButton} onClick={submitHandler}>
 				SUBMIT

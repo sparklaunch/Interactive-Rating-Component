@@ -9,7 +9,7 @@ import styles from "./ThankYou.module.css";
 export default function ThankYou() {
 	return (
 		<main className={styles.main}>
-			<Image src={thankYou} alt="Thank-you" />
+			<Image src={thankYou} alt="" />
 			<Suspense fallback={null}>
 				<RatingText />
 			</Suspense>
@@ -27,5 +27,8 @@ export default function ThankYou() {
 function RatingText() {
 	const searchParams = useSearchParams();
 	const rating = searchParams.get("rating");
+	if (!rating) {
+		return <p className={styles.ratingText}>Invalid access!</p>;
+	}
 	return <p className={styles.ratingText}>You selected {rating} out of 5</p>;
 }
